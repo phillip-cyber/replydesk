@@ -247,7 +247,7 @@ export default function LeadDetailModal({
             />
             {generateErr && <p className="text-xs text-rose-600 mt-2">{generateErr}</p>}
             {(lead.proposedEmailSubject || lead.proposedEmailBody) && (
-              <div className="flex gap-2 mt-2 flex-wrap">
+              <div className="flex gap-2 mt-2 flex-wrap items-center">
                 <button
                   onClick={() => {
                     const text = `Subject: ${lead.proposedEmailSubject || ''}\n\n${lead.proposedEmailBody || ''}`;
@@ -259,17 +259,92 @@ export default function LeadDetailModal({
                 </button>
                 {lead.contactEmail && (
                   <a
-                    href={`mailto:${lead.contactEmail}?subject=${encodeURIComponent(
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(lead.contactEmail)}&su=${encodeURIComponent(
                       lead.proposedEmailSubject || ''
                     )}&body=${encodeURIComponent(lead.proposedEmailBody || '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-xs px-3 py-1.5 rounded-full btn-grad"
                   >
-                    Open in mail client →
+                    Open Gmail compose →
                   </a>
+                )}
+                {lead.contactEmail && (
+                  <button
+                    onClick={() =>
+                      onUpdate(lead.id, {
+                        outreachSent: true,
+                        status: lead.status === 'replied' || lead.status === 'won' || lead.status === 'meeting' ? lead.status : 'sent',
+                        lastEmailAt: Date.now(),
+                        lastEmailTo: lead.contactEmail,
+                        lastPlatform: 'Email',
+                        lastTouch: new Date().toISOString(),
+                      })
+                    }
+                    className="text-xs px-3 py-1.5 rounded-full bg-emerald-600 text-white hover:bg-emerald-700"
+                  >
+                    Mark email sent
+                  </button>
+                )}
+                {lead.outreachSent && lead.lastEmailAt && (
+                  <span className="text-[11px] text-emerald-700">
+                    sent {new Date(lead.lastEmailAt).toLocaleDateString()}
+                    {lead.lastEmailTo ? ` → ${lead.lastEmailTo}` : ''}
+                  </span>
                 )}
               </div>
             )}
           </Section>
+
+          {(lead.linkedinUrl || lead.proposedDmMessage) && (
+            <Section title="LinkedIn outreach">
+              {lead.linkedinUrl && (
+                <div className="flex gap-2 mb-2 flex-wrap">
+                  <a
+                    href={lead.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs px-3 py-1.5 rounded-full bg-[#0a66c2] text-white hover:bg-[#0a4f99]"
+                  >
+                    Open LinkedIn profile →
+                  </a>
+                  <span className="text-[11px] text-muted self-center">
+                    Click Connect → Add a note → paste below
+                  </span>
+                </div>
+              )}
+              {lead.proposedDmMessage && (
+                <textarea
+                  value={lead.proposedDmMessage}
+                  readOnly
+                  onClick={(e) => (e.target as HTMLTextAreaElement).select()}
+                  className="w-full p-3 rounded-lg border border-stone-200 bg-stone-50 text-xs leading-relaxed min-h-[100px] outline-none font-mono"
+                />
+              )}
+              <div className="flex gap-2 mt-2 flex-wrap">
+                {lead.proposedDmMessage && (
+                  <button
+                    onClick={() => navigator.clipboard.writeText(lead.proposedDmMessage || '')}
+                    className="text-xs px-3 py-1.5 rounded-full bg-white border border-stone-200 hover:bg-stone-50"
+                  >
+                    Copy DM
+                  </button>
+                )}
+                <button
+                  onClick={() =>
+                    onUpdate(lead.id, {
+                      lastPlatform: 'LinkedIn',
+                      lastTouch: new Date().toISOString(),
+                      internalNotes: ((lead.internalNotes || '') + `\nLinkedIn invite sent ${new Date().toLocaleDateString()}`).trim(),
+                    })
+                  }
+                  className="text-xs px-3 py-1.5 rounded-full bg-[#0a66c2] text-white hover:bg-[#0a4f99]"
+                >
+                  Mark LinkedIn sent
+                </button>
+              </div>
+            </Section>
+          )}
 
           <Section title="Internal Notes">
             <textarea
