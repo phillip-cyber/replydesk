@@ -10,7 +10,11 @@
     "contactEmail": "",
     "notes": "Chef/Partner. Multiple Austin locations. Owner LinkedIn confirmed; no direct personal email publicly available.",
     "internalNotes": "Batch 1 outreach: Camden Stuerzenberger LinkedIn invite + abril@ email sent today",
-    "contactPlatform": "Email"
+    "contactPlatform": "Email",
+    "outreachSent": true,
+    "status": "sent",
+    "lastPlatform": "LinkedIn",
+    "lastTouch": "2026-04-15"
   },
   {
     "name": "24 Diner",
@@ -74,7 +78,11 @@
     "contactEmail": "",
     "notes": "Fourth-generation family restaurant. Gina Capitanini is VP/President. Owner LinkedIn confirmed; direct personal email masked in public records.",
     "internalNotes": "Batch 1 outreach: Gina Capitanini LinkedIn invite + info@ email sent today",
-    "contactPlatform": "Email"
+    "contactPlatform": "Email",
+    "outreachSent": true,
+    "status": "sent",
+    "lastPlatform": "LinkedIn",
+    "lastTouch": "2026-04-15"
   },
   {
     "name": "Espresso Vivace",
@@ -125,7 +133,11 @@
     "contactEmail": "",
     "notes": "Co-founded with Cindy Chen. Award-winning Chinese restaurant, Chinatown. Owner LinkedIn confirmed; direct email not available.",
     "internalNotes": "Batch 1 outreach: events@ email sent today; LinkedIn invite blocked by email-verification gate",
-    "contactPlatform": "Email"
+    "contactPlatform": "Email",
+    "outreachSent": true,
+    "status": "sent",
+    "lastPlatform": "LinkedIn",
+    "lastTouch": "2026-04-15"
   },
   {
     "name": "Flour Bakery + Cafe",
@@ -151,7 +163,11 @@
     "contactEmail": "",
     "notes": "Co-founder with husband Will (2012). Independent coffee roaster. Owner LinkedIn confirmed; no direct personal email available.",
     "internalNotes": "Batch 1 outreach: Kathleen Pratt LinkedIn invite sent today; no email available",
-    "contactPlatform": "LinkedIn DM"
+    "contactPlatform": "LinkedIn DM",
+    "outreachSent": true,
+    "status": "sent",
+    "lastPlatform": "LinkedIn",
+    "lastTouch": "2026-04-15"
   },
   {
     "name": "Guelaguetza",
@@ -164,7 +180,11 @@
     "contactEmail": "",
     "notes": "Michelin-recognized Oaxacan restaurant, co-owned with siblings Fernando Jr. and Bricia. Owner LinkedIn confirmed; no direct personal email.",
     "internalNotes": "Batch 1 outreach: Paulina Lopez LinkedIn invite sent today; only placeholder email",
-    "contactPlatform": "LinkedIn DM"
+    "contactPlatform": "LinkedIn DM",
+    "outreachSent": true,
+    "status": "sent",
+    "lastPlatform": "LinkedIn",
+    "lastTouch": "2026-04-15"
   },
   {
     "name": "Mercantile Denver",
@@ -239,12 +259,14 @@
     "proposedEmailSubject": "Saw something on 360 Bistro's reviews",
     "proposedEmailBody": "Hi Kevin,\n\nQuick heads up.\n\nPulled your last 305 Google reviews on 360 Bistro. The profile is strong, 4.5 stars, mostly positive. That said, no operator can read all 305 of them. The patterns customers leave in the longer reviews quietly drive perception, and most owners never see them.\n\nI'm with Bloom. 5 AI agents that read every Google review you get, draft tone-matched replies, surface the patterns quietly hurting your ratings, and watch your nearest competitors. You approve replies in one click. We do the rest.\n\nI went ahead and ran the full preview on 360 Bistro. Snapshot below.\n\nTHE BLOOM PREVIEW FOR 360 BISTRO\n4.5 stars on 305 Google reviews.\n\nWHAT YOUR REVIEWS ARE QUIETLY FLAGGING:\n  • 305 reviews and growing. Themes you are missing without an agent reading every one quietly compound.\n\nPATTERNS ATLAS SPOTTED:\n  • Staff excellence is the primary differentiator across all reviews\n  • Wine program (by-the-glass selection and tastings) is a notable draw\n\nEcho, our reply agent, drafts a tone-matched response for every review. For example:\n\n  Review: \"Came here for the first time last evening and was beyond impressed. Loved the chicken piccata, and I've never seen a restaurant with so many wines by the glass - the selection is incredible.\"\n\n  Echo draft: \"Mason, thrilled you loved the chicken piccata and found our wine program. Mohammed's hospitality is exactly what we aim for every night. We can't wait to see you back on the patio soon.\n\nTeam at 360 Bistro\"\n\nThat is the daily output. Multiply across every review you get, plus a weekly action list, dish-level sentiment, and a competitor watch on your block.\n\nFounder cohort is a flat $10. One time. Not a subscription, not recurring. Heavily subsidized on our end. For context, that is less than what most operators already pay for a personal ChatGPT or Claude account, and Bloom is using far more AI tokens behind the scenes than a single human ever generates.\n\nIf the preview resonated, just reply and I will set you up.\n\nLet me know what you think.\n\nPhillip",
     "proposedDmMessage": "Hi Kevin, thanks for connecting.\n\nQuick heads up.\n\nPulled your last 305 reviews on 360 Bistro. 4.5★ profile, but plenty of patterns customers are quietly telling you that no operator can read by hand.\n\nI'm with Bloom. 5 AI agents (Iris, Echo, Atlas, Sage, Argus) read every review, draft tone-matched replies, surface friction patterns, and watch your nearest competitors. You approve replies in one click.\n\nBLOOM PREVIEW FOR 360 BISTRO\n4.5★ on 305 reviews.\n\nWhat your reviews are quietly flagging:\n  • 305 reviews to read by hand. Patterns get buried.\n\nAtlas patterns:\n  • Staff excellence is the primary differentiator across all reviews\n  • Wine program (by-the-glass selection and tastings) is a notable draw\n\nFounder cohort is a flat $10. One time. Not a subscription, not recurring. Heavily subsidized on our end. For context, that is less than what most operators already pay for a personal ChatGPT or Claude account, and Bloom is using far more AI tokens behind the scenes than a single human ever generates.\n\nLet me know what you think.",
-    "internalNotes": "Batch 2 (Apr 29): outreach drafted (subject D, friction-first body). LinkedIn DM + email queued in launchpad — not yet sent.",
+    "internalNotes": "Batch 2 (Apr 29 2026): friction-first email sent to info@360bistro.com. Subject: \"Saw something on 360 Bistro's reviews\". LinkedIn invite still pending.",
     "contactPlatform": "LinkedIn DM",
     "bloomPreviewUrl": "/?prefill=https%3A//www.360bistro.com",
-    "outreachSent": false,
-    "status": "queued",
-    "lastPlatform": "LinkedIn DM"
+    "outreachSent": true,
+    "status": "sent",
+    "lastPlatform": "Email",
+    "lastEmailAt": 1777493206904,
+    "lastEmailTo": "info@360bistro.com"
   },
   {
     "name": "Etch Restaurant",
@@ -283,12 +305,14 @@
     "proposedEmailSubject": "Saw something on Charleston Catering Co's reviews",
     "proposedEmailBody": "Hi Robert,\n\nQuick heads up.\n\nPulled your last 18 Google reviews on Charleston Catering Co. The profile is strong, 4.8 stars, mostly positive. That said, no operator can read all 18 of them. The patterns customers leave in the longer reviews quietly drive perception, and most owners never see them.\n\nI'm with Bloom. 5 AI agents that read every Google review you get, draft tone-matched replies, surface the patterns quietly hurting your ratings, and watch your nearest competitors. You approve replies in one click. We do the rest.\n\nI went ahead and ran the full preview on Charleston Catering Co. Snapshot below.\n\nTHE BLOOM PREVIEW FOR CHARLESTON CATERING CO\n4.8 stars on 18 Google reviews.\n\nWHAT YOUR REVIEWS ARE QUIETLY FLAGGING:\n  • 18 reviews and growing. Themes you are missing without an agent reading every one quietly compound.\n\nPATTERNS ATLAS SPOTTED:\n  • Wedding/event catering is core strength, all reviews are from events\n  • Amber's personal touch & relationship-building is a key differentiator\n\nEcho, our reply agent, drafts a tone-matched response for every review. For example:\n\n  Review: \"Amber made the entire process feel personal, welcoming, and incredibly accommodating… She truly went above and beyond a caterer's duties, matching my florals and adding decor around the food.\"\n\n  Echo draft: \"Demarie, your words mean everything to us. Watching your guests light up over the Charleston-inspired dishes and sliders was pure joy, that's exactly why we do this. Amber and Keith loved bringing your vision to life, decor and all.\"\n\nThat is the daily output. Multiply across every review you get, plus a weekly action list, dish-level sentiment, and a competitor watch on your block.\n\nFounder cohort is a flat $10. One time. Not a subscription, not recurring. Heavily subsidized on our end. For context, that is less than what most operators already pay for a personal ChatGPT or Claude account, and Bloom is using far more AI tokens behind the scenes than a single human ever generates.\n\nIf the preview resonated, just reply and I will set you up.\n\nLet me know what you think.\n\nPhillip",
     "proposedDmMessage": "Hi Robert, thanks for connecting.\n\nQuick heads up.\n\nPulled your last 18 reviews on Charleston Catering Co. 4.8★ profile, but plenty of patterns customers are quietly telling you that no operator can read by hand.\n\nI'm with Bloom. 5 AI agents (Iris, Echo, Atlas, Sage, Argus) read every review, draft tone-matched replies, surface friction patterns, and watch your nearest competitors. You approve replies in one click.\n\nBLOOM PREVIEW FOR CHARLESTON CATERING CO\n4.8★ on 18 reviews.\n\nWhat your reviews are quietly flagging:\n  • 18 reviews to read by hand. Patterns get buried.\n\nAtlas patterns:\n  • Wedding/event catering is core strength, all reviews are from events\n  • Amber's personal touch & relationship-building is a key differentiator\n\nFounder cohort is a flat $10. One time. Not a subscription, not recurring. Heavily subsidized on our end. For context, that is less than what most operators already pay for a personal ChatGPT or Claude account, and Bloom is using far more AI tokens behind the scenes than a single human ever generates.\n\nLet me know what you think.",
-    "internalNotes": "Batch 2 (Apr 29): outreach drafted (subject D, friction-first body). LinkedIn DM + email queued in launchpad — not yet sent.",
+    "internalNotes": "Batch 2 (Apr 29 2026): friction-first email sent to info@charlestoncateringcompany.com. Subject: \"Saw something on Charleston Catering Co's reviews\". LinkedIn invite still pending.",
     "contactPlatform": "LinkedIn DM",
     "bloomPreviewUrl": "/?prefill=https%3A//charlestoncateringcompany.com",
-    "outreachSent": false,
-    "status": "queued",
-    "lastPlatform": "LinkedIn DM"
+    "outreachSent": true,
+    "status": "sent",
+    "lastPlatform": "Email",
+    "lastEmailAt": 1777493206904,
+    "lastEmailTo": "info@charlestoncateringcompany.com"
   },
   {
     "name": "Chef Adrianne's Vineyard Restaurant & Bar",
@@ -583,12 +607,14 @@
     "proposedEmailSubject": "Saw something on Bistro 555's reviews",
     "proposedEmailBody": "Hi David,\n\nQuick heads up.\n\nPulled your last 539 Google reviews on Bistro 555. The profile is strong, 4.5 stars, mostly positive. That said, no operator can read all 539 of them. The patterns customers leave in the longer reviews quietly drive perception, and most owners never see them.\n\nI'm with Bloom. 5 AI agents that read every Google review you get, draft tone-matched replies, surface the patterns quietly hurting your ratings, and watch your nearest competitors. You approve replies in one click. We do the rest.\n\nI went ahead and ran the full preview on Bistro 555. Snapshot below.\n\nTHE BLOOM PREVIEW FOR BISTRO 555\n4.5 stars on 539 Google reviews.\n\nWHAT YOUR REVIEWS ARE QUIETLY FLAGGING:\n  • 539 reviews and growing. Themes you are missing without an agent reading every one quietly compound.\n\nPATTERNS ATLAS SPOTTED:\n  • All recent reviews are 5-star ratings\n  • Multiple mentions of specific French dishes as standouts\n\nEcho, our reply agent, drafts a tone-matched response for every review. For example:\n\n  Review: \"Fantastic! Since January 2026 this place has been Bistro Mistral. Everything was fresh and tasty. We also got the Duck pate which was delicious and they have amazing French wine.\"\n\n  Echo draft: \"Daren, we're thrilled you experienced the freshness and care we put into every plate, especially the duck pâté. Our wine list is curated to honor that French tradition. See you soon at Bistro Mistral.\n\nTeam at Bistro Mistral\"\n\nThat is the daily output. Multiply across every review you get, plus a weekly action list, dish-level sentiment, and a competitor watch on your block.\n\nFounder cohort is a flat $10. One time. Not a subscription, not recurring. Heavily subsidized on our end. For context, that is less than what most operators already pay for a personal ChatGPT or Claude account, and Bloom is using far more AI tokens behind the scenes than a single human ever generates.\n\nIf the preview resonated, just reply and I will set you up.\n\nLet me know what you think.\n\nPhillip",
     "proposedDmMessage": "Hi David, thanks for connecting.\n\nQuick heads up.\n\nPulled your last 539 reviews on Bistro 555. 4.5★ profile, but plenty of patterns customers are quietly telling you that no operator can read by hand.\n\nI'm with Bloom. 5 AI agents (Iris, Echo, Atlas, Sage, Argus) read every review, draft tone-matched replies, surface friction patterns, and watch your nearest competitors. You approve replies in one click.\n\nBLOOM PREVIEW FOR BISTRO 555\n4.5★ on 539 reviews.\n\nWhat your reviews are quietly flagging:\n  • 539 reviews to read by hand. Patterns get buried.\n\nAtlas patterns:\n  • All recent reviews are 5-star ratings\n  • Multiple mentions of specific French dishes as standouts\n\nFounder cohort is a flat $10. One time. Not a subscription, not recurring. Heavily subsidized on our end. For context, that is less than what most operators already pay for a personal ChatGPT or Claude account, and Bloom is using far more AI tokens behind the scenes than a single human ever generates.\n\nLet me know what you think.",
-    "internalNotes": "Batch 2 (Apr 29): outreach drafted (subject D, friction-first body). LinkedIn DM + email queued in launchpad — not yet sent.",
+    "internalNotes": "Batch 2 (Apr 29 2026): friction-first email sent to info@bistro555houston.com. Subject: \"Saw something on Bistro 555's reviews\". LinkedIn invite still pending.",
     "contactPlatform": "LinkedIn DM",
     "bloomPreviewUrl": "/?prefill=https%3A//www.bistro555houston.com",
-    "outreachSent": false,
-    "status": "queued",
-    "lastPlatform": "LinkedIn DM"
+    "outreachSent": true,
+    "status": "sent",
+    "lastPlatform": "Email",
+    "lastEmailAt": 1777493206904,
+    "lastEmailTo": "info@bistro555houston.com"
   },
   {
     "name": "Callie Restaurant",
