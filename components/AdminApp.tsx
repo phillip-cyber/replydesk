@@ -6,7 +6,7 @@ import ChatPanel from './ChatPanel';
 import LeadDetailModal from './LeadDetailModal';
 import AddLeadModal from './AddLeadModal';
 
-const STORAGE_KEY = 'ms-leads-v1';
+const STORAGE_KEY = 'ms-leads-v2';
 const STATUSES: LeadStatus[] = ['new', 'queued', 'sent', 'replied', 'meeting', 'won', 'lost'];
 
 export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
@@ -30,6 +30,10 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
         prev.map((l) => {
           const cached = map.get(l.id);
           if (!cached) return l;
+          // If seed explicitly marks lead as sent/queued (Batch 2 backfill), seed wins.
+          // Otherwise cached client-side state (user edits) wins.
+          const seedDeclaredSent = l.outreachSent === true;
+          const seedDeclaredStatus = l.status && l.status !== 'new';
           return {
             ...cached,
             // Seed-fresh static fields always win
@@ -44,6 +48,13 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
             linkedinUrl: cached.linkedinUrl || l.linkedinUrl,
             contactEmail: cached.contactEmail || l.contactEmail,
             emails: cached.emails && cached.emails.length > 0 ? cached.emails : l.emails,
+            // Seed-declared sent state always wins
+            outreachSent: seedDeclaredSent ? true : cached.outreachSent,
+            status: seedDeclaredStatus ? l.status : cached.status,
+            lastEmailAt: l.lastEmailAt ?? cached.lastEmailAt,
+            lastEmailTo: l.lastEmailTo ?? cached.lastEmailTo,
+            lastPlatform: l.lastPlatform ?? cached.lastPlatform,
+            internalNotes: l.internalNotes && (!cached.internalNotes || cached.internalNotes.length < 5) ? l.internalNotes : cached.internalNotes,
           };
         })
       );
