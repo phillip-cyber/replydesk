@@ -34,3 +34,4 @@ npm run dev
 - Tagline: *Your local business deserves a second bloom.*
 - Voice: warm, premium, founder-led, plainspoken
 - Colors: ink #0A0A0A, paper #FAFAF7, accent #FF5C26 (coral/rose)
+
