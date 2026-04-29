@@ -10,9 +10,10 @@ export function getSeedLeads(): Lead[] {
   return (seedRaw as SeedLead[]).map((s, i) => ({
     ...s,
     id: slugId(s, i),
-    status: 'new',
-    outreachSent: false,
+    // Respect seed JSON values when present so Apr 29 sent-state survives
+    status: s.status ?? 'new',
+    outreachSent: s.outreachSent ?? false,
     responded: false,
-    internalNotes: '',
+    internalNotes: s.internalNotes ?? '',
   }));
 }

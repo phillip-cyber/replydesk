@@ -46,6 +46,10 @@ export type Lead = {
   proposedDmMessage?: string;
   contactPlatform?: 'LinkedIn DM' | 'Email' | 'X / Twitter DM' | 'Reddit DM' | '';
   bloomPreviewUrl?: string; // /?prefill=...
+  // Send tracking
+  lastEmailAt?: number;
+  lastEmailTo?: string;
+  lastPlatform?: string;
 };
 
 // Helper used everywhere
@@ -56,7 +60,12 @@ export function leadHasContactInfo(l: Pick<Lead, 'linkedinUrl' | 'contactEmail' 
   return false;
 }
 
-export type SeedLead = Omit<Lead, 'id' | 'status' | 'outreachSent' | 'responded' | 'internalNotes' | 'lastTouch'>;
+export type SeedLead = Omit<Lead, 'id' | 'responded' | 'lastTouch'> & {
+  // status/outreachSent/internalNotes are optional in seed JSON; seed.ts fills defaults
+  status?: LeadStatus;
+  outreachSent?: boolean;
+  internalNotes?: string;
+};
 
 // ——— Review intelligence types ———
 
