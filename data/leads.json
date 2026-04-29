@@ -1,0 +1,178 @@
+[
+  {
+    "name": "Phoebe's Diner",
+    "website": "https://phoebesdiner.com",
+    "city": "Austin",
+    "state": "TX",
+    "type": "Diner",
+    "ownerName": "Camden Stuerzenberger",
+    "linkedinUrl": "https://www.linkedin.com/in/camden-stuerzenberger-aa19777a/",
+    "contactEmail": "",
+    "notes": "Chef/Partner. Multiple Austin locations. Owner LinkedIn confirmed; no direct personal email publicly available."
+  },
+  {
+    "name": "24 Diner",
+    "website": "https://www.24diner.com",
+    "city": "Austin",
+    "state": "TX",
+    "type": "Diner",
+    "ownerName": "Andrew Curren",
+    "linkedinUrl": "",
+    "contactEmail": "",
+    "notes": "Chef-inspired comfort food diner. Owner identified; LinkedIn URL not publicly listed; only generic info@24diner.com available."
+  },
+  {
+    "name": "Nayar Taqueria",
+    "website": "https://www.nayartaqueria.com",
+    "city": "Portland",
+    "state": "OR",
+    "type": "Mexican/Taqueria",
+    "ownerName": "",
+    "linkedinUrl": "",
+    "contactEmail": "",
+    "notes": "Family-owned Mexican restaurant. SE Portland location. Owner name not publicly available."
+  },
+  {
+    "name": "Ole Ole Taqueria",
+    "website": "https://oleoletaqueria.com",
+    "city": "Portland",
+    "state": "OR",
+    "type": "Mexican/Taqueria",
+    "ownerName": "Luis and Magdalena",
+    "linkedinUrl": "",
+    "contactEmail": "",
+    "notes": "Family-owned since 2000. 2137 E Burnside location. Owner names from 2001 article; LinkedIn/direct emails not available."
+  },
+  {
+    "name": "Santo Domingo Taqueria",
+    "website": "https://sdtaqueriapdx.com",
+    "city": "Portland",
+    "state": "OR",
+    "type": "Mexican/Taqueria",
+    "ownerName": "Abraham and Gloria Martel Garcia",
+    "linkedinUrl": "",
+    "contactEmail": "",
+    "notes": "Authentic Oaxacan restaurant, 5447 NE 42nd Ave. Owner names confirmed; LinkedIn/personal emails not available."
+  },
+  {
+    "name": "The Village at Italian Village",
+    "website": "https://www.thevillage-chicago.com",
+    "city": "Chicago",
+    "state": "IL",
+    "type": "Italian",
+    "ownerName": "Gina Capitanini",
+    "linkedinUrl": "https://www.linkedin.com/in/gina-capitanini-32285024",
+    "contactEmail": "",
+    "notes": "Fourth-generation family restaurant. Gina Capitanini is VP/President. Owner LinkedIn confirmed; direct personal email masked in public records."
+  },
+  {
+    "name": "Espresso Vivace",
+    "website": "https://espressovivace.com",
+    "city": "Seattle",
+    "state": "WA",
+    "type": "Coffee Shop",
+    "ownerName": "David Schomer",
+    "linkedinUrl": "",
+    "contactEmail": "",
+    "notes": "Co-founder with Geneva Sullivan (1988). Iconic coffee roaster. Owner name confirmed; LinkedIn URL not publicly listed."
+  },
+  {
+    "name": "Bain BBQ",
+    "website": "https://bainbarbecue.com",
+    "city": "Memphis",
+    "state": "TN",
+    "type": "BBQ/Southern",
+    "ownerName": "",
+    "linkedinUrl": "",
+    "contactEmail": "",
+    "notes": "Texas-style BBQ, 993 S Cooper St. Owner name and LinkedIn not publicly available."
+  },
+  {
+    "name": "L&B Spumoni Gardens",
+    "website": "https://spumonigardens.com",
+    "city": "Brooklyn",
+    "state": "NY",
+    "type": "Pizza/Pasta",
+    "ownerName": "Toni Corey",
+    "linkedinUrl": "",
+    "contactEmail": "",
+    "notes": "Family-owned Sicilian pizza since 1939. Toni Corey is granddaughter/current owner. No LinkedIn or direct email found."
+  },
+  {
+    "name": "China Live",
+    "website": "https://chinalivesf.com",
+    "city": "San Francisco",
+    "state": "CA",
+    "type": "Asian",
+    "ownerName": "George Chen",
+    "linkedinUrl": "https://www.linkedin.com/in/george-chen-a388a030/",
+    "contactEmail": "",
+    "notes": "Co-founded with Cindy Chen. Award-winning Chinese restaurant, Chinatown. Owner LinkedIn confirmed; direct email not available."
+  },
+  {
+    "name": "Flour Bakery + Cafe",
+    "website": "https://www.flourbakery.com",
+    "city": "Boston",
+    "state": "MA",
+    "type": "Bakery/Cafe",
+    "ownerName": "Joanne Chang",
+    "linkedinUrl": "",
+    "contactEmail": "",
+    "notes": "James Beard Award-winner. Co-owner with husband Christopher Myers. LinkedIn URL not publicly listed; no direct email available."
+  },
+  {
+    "name": "Tandem Coffee Roasters",
+    "website": "https://www.tandemcoffee.com",
+    "city": "Portland",
+    "state": "ME",
+    "type": "Coffee Shop",
+    "ownerName": "Kathleen Pratt",
+    "linkedinUrl": "https://www.linkedin.com/in/kathleen-pratt-890518345",
+    "contactEmail": "",
+    "notes": "Co-founder with husband Will (2012). Independent coffee roaster. Owner LinkedIn confirmed; no direct personal email available."
+  },
+  {
+    "name": "Guelaguetza",
+    "website": "https://www.ilovemole.com",
+    "city": "Los Angeles",
+    "state": "CA",
+    "type": "Mexican",
+    "ownerName": "Paulina Lopez",
+    "linkedinUrl": "https://www.linkedin.com/in/paulina-lopez-velazquez/",
+    "contactEmail": "",
+    "notes": "Michelin-recognized Oaxacan restaurant, co-owned with siblings Fernando Jr. and Bricia. Owner LinkedIn confirmed; no direct personal email."
+  },
+  {
+    "name": "Mercantile Denver",
+    "website": "https://www.mercantiledenver.com",
+    "city": "Denver",
+    "state": "CO",
+    "type": "American",
+    "ownerName": "Alex Seidel",
+    "linkedinUrl": "",
+    "contactEmail": "",
+    "notes": "James Beard-winner chef-owner at Union Station. Sold majority stake to Sage Hospitality (2024). No LinkedIn or direct email available."
+  },
+  {
+    "name": "Royal China",
+    "website": "https://www.royalchinadallas.com",
+    "city": "Dallas",
+    "state": "TX",
+    "type": "Asian",
+    "ownerName": "April Kao",
+    "linkedinUrl": "",
+    "contactEmail": "",
+    "notes": "Family-owned Chinese restaurant, co-owned with husband George. 50+ year legacy. No LinkedIn or direct email found."
+  },
+  {
+    "name": "Bom Dia Cafe",
+    "website": "https://www.bomdiame.com",
+    "city": "Portland",
+    "state": "ME",
+    "type": "Coffee Shop",
+    "ownerName": "Fletch Moffett",
+    "linkedinUrl": "",
+    "contactEmail": "",
+    "notes": "Owner, tropically-inspired acai cafe, 47 India St. Opened March 2024. No LinkedIn or direct email found in public sources."
+  }
+]

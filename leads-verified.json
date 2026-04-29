@@ -1,0 +1,145 @@
+[
+  {
+    "name": "Olde Soul Barbershop",
+    "website": "https://oldesoulbarbershop.com",
+    "city": "Austin",
+    "state": "TX",
+    "type": "Barbershop",
+    "ownerName": "Dax Rodgers",
+    "linkedinUrl": "https://www.linkedin.com/company/the-olde-soul",
+    "contactEmail": "info@oldesoulbarbershop.com",
+    "notes": "Multi-location barbershop chain with classic branding, booking app available. Website features prominent location pages with beard care services and grooming imagery."
+  },
+  {
+    "name": "Uptown & Humboldt",
+    "website": "https://www.uptownhumboldt.com",
+    "city": "Denver",
+    "state": "CO",
+    "type": "Restaurant",
+    "ownerName": "Gio D.",
+    "linkedinUrl": "",
+    "contactEmail": "info@uptownhumboldt.com",
+    "notes": "Food hall restaurant inside Zeppelin Station at 3501 Wazee St. Website shows food truck menu, blog section, and detailed owner bio with Puerto Rican and Spanish heritage mention."
+  },
+  {
+    "name": "Portland Dental PC",
+    "website": "https://www.portlanddentalpc.com",
+    "city": "Portland",
+    "state": "OR",
+    "type": "Dentist",
+    "ownerName": "Dr. Kaveendra Ranasinghe",
+    "linkedinUrl": "",
+    "contactEmail": "contact@portlanddentalpc.com",
+    "notes": "General dentistry practice at 511 SW 10th Ave. Website lists services, hours (Mon-Thu 7AM-4PM), and doctor profiles with advanced dental techniques messaging."
+  },
+  {
+    "name": "Deep Roots ATX Salon",
+    "website": "https://www.deeprootsatxsalon.com",
+    "city": "Austin",
+    "state": "TX",
+    "type": "Hair Salon",
+    "ownerName": "Melanie Jacobs, Haven Tibbetts",
+    "linkedinUrl": "",
+    "contactEmail": "info@deeprootsatxsalon.com",
+    "notes": "Multi-location Austin salon with dedicated contact emails for each location (Austin, Cedar Park, Bridal services). Website features salon gallery, services page, and Terms & Conditions page."
+  },
+  {
+    "name": "Infinite Vitality Chiropractic & Massage",
+    "website": "https://infinitevitalitypdx.com",
+    "city": "Portland",
+    "state": "OR",
+    "type": "Chiropractor",
+    "ownerName": "Lauren Bah",
+    "linkedinUrl": "",
+    "contactEmail": "doctors@infinitevitalitypdx.com",
+    "notes": "Chiropractic clinic at 13150 NE Halsey St. Website features services section, contact form, and business hours clearly displayed (Mon-Thu 9am-6pm, Fri 9am-5pm)."
+  },
+  {
+    "name": "Johnson's Auto Repair",
+    "website": "https://www.johnsonsautorepair.net",
+    "city": "Seattle",
+    "state": "WA",
+    "type": "Auto Repair",
+    "ownerName": "Jeff Johnson",
+    "linkedinUrl": "",
+    "contactEmail": "",
+    "notes": "Family-owned since 1949, relocated to 9418 35th Ave NE. Website shows established reputation, hours (Mon-Fri 7:30am-5:30pm), and family business heritage messaging."
+  },
+  {
+    "name": "Mose Auto",
+    "website": "https://moseauto.com",
+    "city": "Seattle",
+    "state": "WA",
+    "type": "Auto Repair",
+    "ownerName": "Mariajosé 'Mosé' Barrera",
+    "linkedinUrl": "",
+    "contactEmail": "info@moseauto.com",
+    "notes": "Community-focused auto repair at 700 S Orchard St. Website emphasizes women empowerment in automotive field, offers basic maintenance classes, hours Mon-Fri 9am-6pm."
+  },
+  {
+    "name": "Bert Roofing, Inc.",
+    "website": "https://bertroofing.com",
+    "city": "Dallas",
+    "state": "TX",
+    "type": "Roofing Contractor",
+    "ownerName": "John Edward Bert II",
+    "linkedinUrl": "",
+    "contactEmail": "mail@bertroofing.com",
+    "notes": "Family-owned roofing company at 10021 Cayuga Dr since 1988. Website includes 'Our Story' page with company history, management team page, and BBB Business Profile link."
+  },
+  {
+    "name": "T Rock Roofing & Contracting",
+    "website": "https://dallasroofer.com",
+    "city": "Dallas",
+    "state": "TX",
+    "type": "Roofing Contractor",
+    "ownerName": "Mark Strong, Sam Rogers",
+    "linkedinUrl": "",
+    "contactEmail": "info@dallasroofer.com",
+    "notes": "Operating 65+ years at 9330 LBJ Fwy. Website features team bios, FAQ section, contact form, and service area information for Dallas area."
+  },
+  {
+    "name": "Corcoran Perry & Co.",
+    "website": "https://www.corcoranperry.com",
+    "city": "Denver",
+    "state": "CO",
+    "type": "Real Estate",
+    "ownerName": "Perry & Corcoran",
+    "linkedinUrl": "",
+    "contactEmail": "concierge@corcoranperry.com",
+    "notes": "Locally-owned brokerage since 1971 with 4 Denver-area office locations. Website lists multiple offices, agent listings, and luxury property focus with navigation to office locations page."
+  },
+  {
+    "name": "Brody Pennell Heating & Air Conditioning",
+    "website": "https://brodypennell.com",
+    "city": "Los Angeles",
+    "state": "CA",
+    "type": "HVAC Contractor",
+    "ownerName": "Randy Gibbs",
+    "linkedinUrl": "https://www.linkedin.com/in/randy-gibbs-573a3665",
+    "contactEmail": "",
+    "notes": "Operating since 1945 at 8599 Venice Blvd. Website includes 'About Us' section with technician bios, cities served page, 461+ Yelp reviews, and contact form with 24-hour response time."
+  },
+  {
+    "name": "Law Office of Matthew J. Kidd",
+    "website": "https://www.kiddlawboston.com",
+    "city": "Boston",
+    "state": "MA",
+    "type": "Law Office",
+    "ownerName": "Matthew J. Kidd",
+    "linkedinUrl": "https://www.linkedin.com/in/mkiddlaw",
+    "contactEmail": "attorneymjkidd@gmail.com",
+    "notes": "Solo practice at 12 Ericsson St, Ste 201. Website features practice areas (criminal defense, personal injury), Super Lawyers profile, resources/videos page, and about section."
+  },
+  {
+    "name": "Effortless Movement Pilates Studio",
+    "website": "https://agelesspilates.wordpress.com",
+    "city": "Portland",
+    "state": "OR",
+    "type": "Pilates Studio",
+    "ownerName": "Christine Binnendyk",
+    "linkedinUrl": "",
+    "contactEmail": "cbinnendyk@gmail.com",
+    "notes": "Independent pilates studio at 1730 SW Skyline Blvd Suite 222. Contact form and direct email available on site, along with instructor information."
+  }
+]
