@@ -4,6 +4,7 @@ import type { Lead, LeadStatus } from '@/lib/types';
 import { STATUS_COLORS, leadHasContactInfo } from '@/lib/types';
 import ChatPanel from './ChatPanel';
 import LeadDetailModal from './LeadDetailModal';
+import AddLeadModal from './AddLeadModal';
 
 const STORAGE_KEY = 'ms-leads-v1';
 const STATUSES: LeadStatus[] = ['new', 'queued', 'sent', 'replied', 'meeting', 'won', 'lost'];
@@ -113,6 +114,7 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
 
   const [detailOpen, setDetailOpen] = useState(false);
   const [detailLeadId, setDetailLeadId] = useState<string | null>(null);
+  const [addOpen, setAddOpen] = useState(false);
   const detailLead = leads.find((l) => l.id === detailLeadId) || null;
   function openDetail(id: string) {
     setDetailLeadId(id);
@@ -124,6 +126,11 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
 
   function update(id: string, patch: Partial<Lead>) {
     setLeads((prev) => prev.map((l) => (l.id === id ? { ...l, ...patch } : l)));
+  }
+
+  function addLead(newLead: Lead) {
+    setLeads((prev) => [newLead, ...prev]);
+    setSelectedId(newLead.id);
   }
 
   return (
@@ -146,6 +153,7 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
         {/* Left: CRM */}
         <div className="border-r border-stone-200 bg-white">
           <Toolbar
+            onAddClick={() => setAddOpen(true)}
             filter={filter}
             setFilter={setFilter}
             query={query}
@@ -177,6 +185,12 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
         </aside>
       </div>
 
+      <AddLeadModal
+        open={addOpen}
+        onClose={() => setAddOpen(false)}
+        onAdd={addLead}
+        existingIds={new Set(leads.map((l) => l.id))}
+      />
       <LeadDetailModal
         lead={detailLead}
         open={detailOpen}
@@ -227,6 +241,7 @@ function Toolbar({
   setQuery,
   counts,
   hiddenCount,
+  onAddClick,
 }: {
   filter: 'all' | LeadStatus;
   setFilter: (f: 'all' | LeadStatus) => void;
@@ -234,6 +249,7 @@ function Toolbar({
   setQuery: (q: string) => void;
   counts: Record<string, number>;
   hiddenCount?: number;
+  onAddClick?: () => void;
 }) {
   const tabs: Array<'all' | LeadStatus> = ['all', ...STATUSES];
   return (
@@ -262,6 +278,14 @@ function Toolbar({
           {hiddenCount} hidden · no contact info
         </div>
       ) : null}
+      {onAddClick && (
+        <button
+          onClick={onAddClick}
+          className={`${hiddenCount && hiddenCount > 0 ? '' : 'ml-auto'} text-xs px-4 py-1.5 rounded-full bg-ink text-white hover:bg-stone-800 font-medium`}
+        >
+          + Add lead
+        </button>
+      )}
     </div>
   );
 }
