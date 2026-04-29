@@ -50,6 +50,9 @@ export type Lead = {
   lastEmailAt?: number;
   lastEmailTo?: string;
   lastPlatform?: string;
+  // LinkedIn invite tracking (separate channel from email outreach)
+  linkedinInviteSent?: boolean;
+  linkedinInviteSentAt?: number;
 };
 
 // Helper used everywhere

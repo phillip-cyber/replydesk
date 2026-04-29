@@ -16,7 +16,9 @@
     "lastPlatform": "Email",
     "lastTouch": "2026-04-15",
     "lastEmailAt": 1777462260000,
-    "lastEmailTo": "camden@phoebesdiner.com"
+    "lastEmailTo": "camden@phoebesdiner.com",
+    "linkedinInviteSent": true,
+    "linkedinInviteSentAt": 1776247200000
   },
   {
     "name": "24 Diner",
@@ -89,7 +91,9 @@
     "outreachSent": true,
     "status": "sent",
     "lastPlatform": "LinkedIn",
-    "lastTouch": "2026-04-15"
+    "lastTouch": "2026-04-15",
+    "linkedinInviteSent": true,
+    "linkedinInviteSentAt": 1776247500000
   },
   {
     "name": "Espresso Vivace",
@@ -144,7 +148,9 @@
     "outreachSent": true,
     "status": "sent",
     "lastPlatform": "LinkedIn",
-    "lastTouch": "2026-04-15"
+    "lastTouch": "2026-04-15",
+    "linkedinInviteSent": true,
+    "linkedinInviteSentAt": 1776247800000
   },
   {
     "name": "Flour Bakery + Cafe",
@@ -174,7 +180,9 @@
     "outreachSent": true,
     "status": "sent",
     "lastPlatform": "LinkedIn",
-    "lastTouch": "2026-04-15"
+    "lastTouch": "2026-04-15",
+    "linkedinInviteSent": true,
+    "linkedinInviteSentAt": 1776248100000
   },
   {
     "name": "Guelaguetza",
@@ -191,7 +199,9 @@
     "outreachSent": true,
     "status": "sent",
     "lastPlatform": "LinkedIn",
-    "lastTouch": "2026-04-15"
+    "lastTouch": "2026-04-15",
+    "linkedinInviteSent": true,
+    "linkedinInviteSentAt": 1776248400000
   },
   {
     "name": "Mercantile Denver",
@@ -747,7 +757,9 @@
     "outreachSent": true,
     "status": "sent",
     "lastPlatform": "LinkedIn",
-    "lastEmailAt": 1777480200000
+    "lastEmailAt": 1777480200000,
+    "linkedinInviteSent": true,
+    "linkedinInviteSentAt": 1777480200000
   },
   {
     "name": "Chai Pani",

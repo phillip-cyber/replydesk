@@ -50,6 +50,8 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
             emails: cached.emails && cached.emails.length > 0 ? cached.emails : l.emails,
             // Seed-declared sent state always wins
             outreachSent: seedDeclaredSent ? true : cached.outreachSent,
+            linkedinInviteSent: l.linkedinInviteSent === true ? true : cached.linkedinInviteSent,
+            linkedinInviteSentAt: l.linkedinInviteSentAt ?? cached.linkedinInviteSentAt,
             status: seedDeclaredStatus ? l.status : cached.status,
             lastEmailAt: l.lastEmailAt ?? cached.lastEmailAt,
             lastEmailTo: l.lastEmailTo ?? cached.lastEmailTo,
@@ -215,6 +217,7 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
 function Header({ leads }: { leads: Lead[] }) {
   const total = leads.length;
   const sent = leads.filter((l) => l.outreachSent).length;
+  const liInvited = leads.filter((l) => l.linkedinInviteSent).length;
   const replied = leads.filter((l) => l.responded).length;
   const won = leads.filter((l) => l.status === 'won').length;
   return (
@@ -228,6 +231,7 @@ function Header({ leads }: { leads: Lead[] }) {
       <div className="text-sm flex items-center gap-5">
         <Stat label="leads" value={total} />
         <Stat label="contacted" value={sent} />
+        <Stat label="LI invited" value={liInvited} />
         <Stat label="replied" value={replied} />
         <Stat label="won" value={won} accent />
         <a href="/" className="text-xs text-muted hover:underline ml-2">view site →</a>
@@ -324,6 +328,7 @@ function LeadsTable({
             <th className="text-left px-4 py-3 font-medium">Location</th>
             <th className="text-left px-4 py-3 font-medium">Contact</th>
             <th className="text-center px-3 py-3 font-medium">Sent</th>
+            <th className="text-center px-3 py-3 font-medium">LI Connect</th>
             <th className="text-center px-3 py-3 font-medium">Replied</th>
             <th className="text-left px-4 py-3 font-medium">Status</th>
           </tr>
@@ -400,6 +405,18 @@ function LeadsTable({
               </td>
               <td className="px-3 py-3 text-center">
                 <Checkbox
+                  checked={!!l.linkedinInviteSent}
+                  onChange={(v) =>
+                    onUpdate(l.id, {
+                      linkedinInviteSent: v,
+                      linkedinInviteSentAt: v ? Date.now() : undefined,
+                      lastTouch: v ? new Date().toISOString() : l.lastTouch,
+                    })
+                  }
+                />
+              </td>
+              <td className="px-3 py-3 text-center">
+                <Checkbox
                   checked={l.responded}
                   onChange={(v) =>
                     onUpdate(l.id, {
@@ -424,7 +441,7 @@ function LeadsTable({
             </tr>
           ))}
           {leads.length === 0 && (
-            <tr><td colSpan={7} className="text-center py-12 text-muted">No leads match.</td></tr>
+            <tr><td colSpan={8} className="text-center py-12 text-muted">No leads match.</td></tr>
           )}
         </tbody>
       </table>
