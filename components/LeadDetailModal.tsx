@@ -296,10 +296,10 @@ export default function LeadDetailModal({
             )}
           </Section>
 
-          {(lead.linkedinUrl || lead.proposedDmMessage) && (
+          {(lead.linkedinUrl || lead.proposedLinkedinNote || lead.proposedDmMessage) && (
             <Section title="LinkedIn outreach">
               {lead.linkedinUrl && (
-                <div className="flex gap-2 mb-2 flex-wrap">
+                <div className="flex gap-2 mb-3 flex-wrap items-center">
                   <a
                     href={lead.linkedinUrl}
                     target="_blank"
@@ -308,41 +308,93 @@ export default function LeadDetailModal({
                   >
                     Open LinkedIn profile →
                   </a>
-                  <span className="text-[11px] text-muted self-center">
-                    Click Connect → Add a note → paste below
+                  <span className="text-[11px] text-muted">
+                    Click Connect → Add a note → paste invite below
                   </span>
                 </div>
               )}
-              {lead.proposedDmMessage && (
-                <textarea
-                  value={lead.proposedDmMessage}
-                  readOnly
-                  onClick={(e) => (e.target as HTMLTextAreaElement).select()}
-                  className="w-full p-3 rounded-lg border border-stone-200 bg-stone-50 text-xs leading-relaxed min-h-[100px] outline-none font-mono"
-                />
+
+              {/* Step 1: Connection invite note */}
+              {lead.proposedLinkedinNote && (
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="text-[10px] uppercase tracking-widest text-muted font-medium">
+                      Step 1 — Connection note
+                    </div>
+                    <div className="text-[10px] text-muted">
+                      {lead.proposedLinkedinNote.length}/300 chars
+                    </div>
+                  </div>
+                  <textarea
+                    value={lead.proposedLinkedinNote}
+                    onChange={(e) => onUpdate(lead.id, { proposedLinkedinNote: e.target.value })}
+                    onClick={(e) => (e.target as HTMLTextAreaElement).select()}
+                    className={`w-full p-3 rounded-lg border bg-white text-xs leading-relaxed min-h-[90px] outline-none focus:border-stone-400 ${
+                      lead.proposedLinkedinNote.length > 300 ? 'border-rose-400' : 'border-stone-200'
+                    }`}
+                  />
+                  <div className="flex gap-2 mt-2 flex-wrap items-center">
+                    <button
+                      onClick={() => navigator.clipboard.writeText(lead.proposedLinkedinNote || '')}
+                      className="text-xs px-3 py-1.5 rounded-full bg-white border border-stone-200 hover:bg-stone-50"
+                    >
+                      Copy invite note
+                    </button>
+                    <button
+                      onClick={() =>
+                        onUpdate(lead.id, {
+                          linkedinInviteSent: true,
+                          linkedinInviteSentAt: Date.now(),
+                          lastTouch: new Date().toISOString(),
+                        })
+                      }
+                      className="text-xs px-3 py-1.5 rounded-full bg-[#0a66c2] text-white hover:bg-[#0a4f99]"
+                    >
+                      Mark invite sent
+                    </button>
+                    {lead.linkedinInviteSent && lead.linkedinInviteSentAt && (
+                      <span className="text-[11px] text-[#0a66c2]">
+                        invite sent {new Date(lead.linkedinInviteSentAt).toLocaleDateString()}
+                      </span>
+                    )}
+                  </div>
+                </div>
               )}
-              <div className="flex gap-2 mt-2 flex-wrap">
-                {lead.proposedDmMessage && (
-                  <button
-                    onClick={() => navigator.clipboard.writeText(lead.proposedDmMessage || '')}
-                    className="text-xs px-3 py-1.5 rounded-full bg-white border border-stone-200 hover:bg-stone-50"
-                  >
-                    Copy DM
-                  </button>
-                )}
-                <button
-                  onClick={() =>
-                    onUpdate(lead.id, {
-                      lastPlatform: 'LinkedIn',
-                      lastTouch: new Date().toISOString(),
-                      internalNotes: ((lead.internalNotes || '') + `\nLinkedIn invite sent ${new Date().toLocaleDateString()}`).trim(),
-                    })
-                  }
-                  className="text-xs px-3 py-1.5 rounded-full bg-[#0a66c2] text-white hover:bg-[#0a4f99]"
-                >
-                  Mark LinkedIn sent
-                </button>
-              </div>
+
+              {/* Step 2: Post-accept DM */}
+              {lead.proposedDmMessage && (
+                <div>
+                  <div className="text-[10px] uppercase tracking-widest text-muted font-medium mb-1">
+                    Step 2 — Post-accept DM (after they connect)
+                  </div>
+                  <textarea
+                    value={lead.proposedDmMessage}
+                    onChange={(e) => onUpdate(lead.id, { proposedDmMessage: e.target.value })}
+                    onClick={(e) => (e.target as HTMLTextAreaElement).select()}
+                    className="w-full p-3 rounded-lg border border-stone-200 bg-stone-50 text-xs leading-relaxed min-h-[100px] outline-none focus:border-stone-400 font-mono"
+                  />
+                  <div className="flex gap-2 mt-2 flex-wrap items-center">
+                    <button
+                      onClick={() => navigator.clipboard.writeText(lead.proposedDmMessage || '')}
+                      className="text-xs px-3 py-1.5 rounded-full bg-white border border-stone-200 hover:bg-stone-50"
+                    >
+                      Copy DM
+                    </button>
+                    <button
+                      onClick={() =>
+                        onUpdate(lead.id, {
+                          lastPlatform: 'LinkedIn DM',
+                          lastTouch: new Date().toISOString(),
+                          internalNotes: ((lead.internalNotes || '') + `\nLinkedIn DM sent ${new Date().toLocaleDateString()}`).trim(),
+                        })
+                      }
+                      className="text-xs px-3 py-1.5 rounded-full bg-[#0a66c2] text-white hover:bg-[#0a4f99]"
+                    >
+                      Mark DM sent
+                    </button>
+                  </div>
+                </div>
+              )}
             </Section>
           )}
 

@@ -43,6 +43,7 @@ export type Lead = {
   keyTakeaways?: string;
   proposedEmailSubject?: string;
   proposedEmailBody?: string;
+  proposedLinkedinNote?: string; // The connection invite note (≤300 chars)
   proposedDmMessage?: string;
   contactPlatform?: 'LinkedIn DM' | 'Email' | 'X / Twitter DM' | 'Reddit DM' | '';
   bloomPreviewUrl?: string; // /?prefill=...
