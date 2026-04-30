@@ -143,14 +143,15 @@
     "linkedinUrl": "https://www.linkedin.com/in/george-chen-a388a030/",
     "contactEmail": "",
     "notes": "Co-founded with Cindy Chen. Award-winning Chinese restaurant, Chinatown. Owner LinkedIn confirmed; direct email not available.",
-    "internalNotes": "Batch 1 outreach: events@ email sent today; LinkedIn invite blocked by email-verification gate Confirmed sent via LinkedIn — no reply yet (Apr 29 2026 status check).",
+    "internalNotes": "Batch 1 outreach: events@ email sent today; LinkedIn invite blocked by email-verification gate Confirmed sent via LinkedIn — no reply yet (Apr 29 2026 status check). [Connect note: review count 4,200 / 4.5★ is estimated — verify on Google Maps before re-sending.]",
     "contactPlatform": "Email",
     "outreachSent": true,
     "status": "sent",
     "lastPlatform": "LinkedIn",
     "lastTouch": "2026-04-15",
     "linkedinInviteSent": true,
-    "linkedinInviteSentAt": 1776247800000
+    "linkedinInviteSentAt": 1776247800000,
+    "proposedLinkedinNote": "Hi George,\nPulled your last 4,200 Google reviews on China Live. The profile is strong, 4.5 stars, mostly positive.\nI'm with Bloom. 5 AI agents (Iris, Echo, Atlas, Sage, Argus) read every review, draft tone-matched replies, surface friction patterns, and watch your nearest competitors."
   },
   {
     "name": "Flour Bakery + Cafe",
