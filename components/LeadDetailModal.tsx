@@ -352,11 +352,28 @@ export default function LeadDetailModal({
                       }
                       className="text-xs px-3 py-1.5 rounded-full bg-[#0a66c2] text-white hover:bg-[#0a4f99]"
                     >
-                      Mark invite sent
+                      Mark request sent
+                    </button>
+                    <button
+                      onClick={() =>
+                        onUpdate(lead.id, {
+                          linkedinAccepted: true,
+                          linkedinAcceptedAt: Date.now(),
+                          lastTouch: new Date().toISOString(),
+                        })
+                      }
+                      className="text-xs px-3 py-1.5 rounded-full bg-emerald-600 text-white hover:bg-emerald-700"
+                    >
+                      Mark accepted
                     </button>
                     {lead.linkedinInviteSent && lead.linkedinInviteSentAt && (
                       <span className="text-[11px] text-[#0a66c2]">
-                        invite sent {new Date(lead.linkedinInviteSentAt).toLocaleDateString()}
+                        request sent {new Date(lead.linkedinInviteSentAt).toLocaleDateString()}
+                      </span>
+                    )}
+                    {lead.linkedinAccepted && lead.linkedinAcceptedAt && (
+                      <span className="text-[11px] text-emerald-700">
+                        accepted {new Date(lead.linkedinAcceptedAt).toLocaleDateString()}
                       </span>
                     )}
                   </div>

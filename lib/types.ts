@@ -56,6 +56,8 @@ export type Lead = {
   // LinkedIn invite tracking (separate channel from email outreach)
   linkedinInviteSent?: boolean;
   linkedinInviteSentAt?: number;
+  linkedinAccepted?: boolean;
+  linkedinAcceptedAt?: number;
 };
 
 // Helper used everywhere
