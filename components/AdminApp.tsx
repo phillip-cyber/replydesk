@@ -265,7 +265,7 @@ function LeadsTable({ leads, selectedId, onOpen, onUpdate, autoEnriching, onReor
             <th className="text-center px-3 py-3 font-medium">LinkedIn Request</th>
             <th className="text-center px-3 py-3 font-medium">LinkedIn Accepted</th>
             <th className="text-center px-3 py-3 font-medium">Replied</th>
-            <th className="text-left px-4 py-3 font-medium">Status</th>
+            <th className="text-left px-4 py-3 font-medium">Notes</th>
           </tr>
         </thead>
         <tbody>
@@ -299,10 +299,10 @@ function LeadsTable({ leads, selectedId, onOpen, onUpdate, autoEnriching, onReor
               <td className="px-3 py-3 text-center"><Checkbox checked={l.responded} onChange={(v) => onUpdate(l.id, { responded: v, status: v && (l.status === 'sent' || l.status === 'queued') ? 'replied' : l.status })} /></td>
               <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
                 <textarea
-                  value={l.status || ''}
+                  value={l.internalNotes || ''}
                   onClick={(e) => e.stopPropagation()}
-                  onChange={(e) => onUpdate(l.id, { status: e.target.value as LeadStatus })}
-                  placeholder="status / notes…"
+                  onChange={(e) => onUpdate(l.id, { internalNotes: e.target.value })}
+                  placeholder="notes…"
                   rows={2}
                   className="w-full text-xs px-2 py-1 rounded border border-stone-200 bg-white resize-none outline-none focus:border-stone-400 leading-snug"
                 />
