@@ -6,7 +6,7 @@ import ChatPanel from './ChatPanel';
 import LeadDetailModal from './LeadDetailModal';
 import AddLeadModal from './AddLeadModal';
 
-const STORAGE_KEY = 'ms-leads-v2';
+const STORAGE_KEY = 'ms-leads-v3';
 const STATUSES: LeadStatus[] = ['new', 'queued', 'sent', 'replied', 'meeting', 'won', 'lost', 'blocked'];
 
 export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
@@ -30,8 +30,10 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
         prev.map((l) => {
           const cached = map.get(l.id);
           if (!cached) return l;
-          // If seed explicitly marks lead as sent/queued (Batch 2 backfill), seed wins.
-          // Otherwise cached client-side state (user edits) wins.
+          // User-set manual statuses ALWAYS win — never overridden by seed.
+          // (Otherwise selecting "blocked" gets reverted to seed status on reload.)
+          const MANUAL_STATUSES = ['blocked', 'lost', 'replied', 'meeting', 'won'] as const;
+          const userManualStatus = (MANUAL_STATUSES as readonly string[]).includes(cached.status);
           const seedDeclaredSent = l.outreachSent === true;
           const seedDeclaredStatus = l.status && l.status !== 'new';
           return {
@@ -48,11 +50,12 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
             linkedinUrl: cached.linkedinUrl || l.linkedinUrl,
             contactEmail: cached.contactEmail || l.contactEmail,
             emails: cached.emails && cached.emails.length > 0 ? cached.emails : l.emails,
-            // Seed-declared sent state always wins
-            outreachSent: seedDeclaredSent ? true : cached.outreachSent,
+            // Sent flag: seed wins ONLY if user hasn't manually overridden status
+            outreachSent: userManualStatus ? cached.outreachSent : (seedDeclaredSent ? true : cached.outreachSent),
             linkedinInviteSent: l.linkedinInviteSent === true ? true : cached.linkedinInviteSent,
             linkedinInviteSentAt: l.linkedinInviteSentAt ?? cached.linkedinInviteSentAt,
-            status: seedDeclaredStatus ? l.status : cached.status,
+            // Status: user manual selections (blocked/lost/replied/meeting/won) always preserved
+            status: userManualStatus ? cached.status : (seedDeclaredStatus ? l.status : cached.status),
             lastEmailAt: l.lastEmailAt ?? cached.lastEmailAt,
             lastEmailTo: l.lastEmailTo ?? cached.lastEmailTo,
             lastPlatform: l.lastPlatform ?? cached.lastPlatform,
