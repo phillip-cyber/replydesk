@@ -11,9 +11,9 @@ const QUICK_ACTIONS = [
       'Draft a 90-word cold email to the owner pitching Bloom. Specific to this restaurant — reference the cuisine or city. Lead with what they\'re missing in their reviews. End with: "Want me to run your URL through it? 30 seconds, free preview." Subject line + body separated.',
   },
   {
-    label: 'Draft LinkedIn DM',
+    label: 'Draft LinkedIn connection note',
     prompt:
-      'Draft a LinkedIn DM under 300 characters to the owner. Conversational. No pitch. Just open a door — reference their restaurant or city specifically.',
+      'Draft a LinkedIn connection note under 300 characters. Rules: no mention of Bloom, no agents, no product pitch whatsoever. One specific data point only — their review count, a friction pattern in their lower-rated reviews, or a specific number. No exclamation points. Goal is only to earn the accept — the follow-up does the pitch. Structure: "Hi [first name], [one specific finding from their reviews]. Wanted to share what I found."',
   },
   {
     label: 'Followup #1',

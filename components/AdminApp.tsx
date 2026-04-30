@@ -1,16 +1,23 @@
 'use client';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Lead, LeadStatus } from '@/lib/types';
 import { STATUS_COLORS, leadHasContactInfo } from '@/lib/types';
 import ChatPanel from './ChatPanel';
 import LeadDetailModal from './LeadDetailModal';
-import AddLeadModal from './AddLeadModal';
 
-const STORAGE_KEY = 'ms-leads-v3';
-const STATUSES: LeadStatus[] = ['new', 'queued', 'sent', 'replied', 'meeting', 'won', 'lost', 'blocked'];
+const STORAGE_KEY = 'ms-leads-v1';
+const ORDER_KEY = 'ms-leads-order-v1';
+const STATUSES: LeadStatus[] = ['new', 'queued', 'sent', 'replied', 'meeting', 'won', 'lost'];
 
 export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
   const [leads, setLeads] = useState<Lead[]>(initialLeads);
+  const [customOrder, setCustomOrder] = useState<string[]>(() => {
+    if (typeof window === 'undefined') return initialLeads.map((l) => l.id);
+    try {
+      const saved = localStorage.getItem(ORDER_KEY);
+      return saved ? JSON.parse(saved) : initialLeads.map((l) => l.id);
+    } catch { return initialLeads.map((l) => l.id); }
+  });
   const [selectedId, setSelectedId] = useState<string>(initialLeads[0]?.id || '');
   const [filter, setFilter] = useState<'all' | LeadStatus>('all');
   const [query, setQuery] = useState('');
@@ -30,12 +37,6 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
         prev.map((l) => {
           const cached = map.get(l.id);
           if (!cached) return l;
-          // User-set manual statuses ALWAYS win — never overridden by seed.
-          // (Otherwise selecting "blocked" gets reverted to seed status on reload.)
-          const MANUAL_STATUSES = ['blocked', 'lost', 'replied', 'meeting', 'won'] as const;
-          const userManualStatus = (MANUAL_STATUSES as readonly string[]).includes(cached.status);
-          const seedDeclaredSent = l.outreachSent === true;
-          const seedDeclaredStatus = l.status && l.status !== 'new';
           return {
             ...cached,
             // Seed-fresh static fields always win
@@ -50,18 +51,6 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
             linkedinUrl: cached.linkedinUrl || l.linkedinUrl,
             contactEmail: cached.contactEmail || l.contactEmail,
             emails: cached.emails && cached.emails.length > 0 ? cached.emails : l.emails,
-            // Sent flag: seed wins ONLY if user hasn't manually overridden status
-            outreachSent: userManualStatus ? cached.outreachSent : (seedDeclaredSent ? true : cached.outreachSent),
-            linkedinInviteSent: l.linkedinInviteSent === true ? true : cached.linkedinInviteSent,
-            linkedinInviteSentAt: l.linkedinInviteSentAt ?? cached.linkedinInviteSentAt,
-            linkedinAccepted: l.linkedinAccepted === true ? true : cached.linkedinAccepted,
-            linkedinAcceptedAt: l.linkedinAcceptedAt ?? cached.linkedinAcceptedAt,
-            // Status: user manual selections (blocked/lost/replied/meeting/won) always preserved
-            status: userManualStatus ? cached.status : (seedDeclaredStatus ? l.status : cached.status),
-            lastEmailAt: l.lastEmailAt ?? cached.lastEmailAt,
-            lastEmailTo: l.lastEmailTo ?? cached.lastEmailTo,
-            lastPlatform: l.lastPlatform ?? cached.lastPlatform,
-            internalNotes: l.internalNotes && (!cached.internalNotes || cached.internalNotes.length < 5) ? l.internalNotes : cached.internalNotes,
           };
         })
       );
@@ -110,6 +99,11 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
   }, [leads]);
 
+  // Persist custom order
+  useEffect(() => {
+    localStorage.setItem(ORDER_KEY, JSON.stringify(customOrder));
+  }, [customOrder]);
+
   // RULE: leads with NO email and NO LinkedIn are dropped entirely (waiting on enrichment, then excluded).
   const visibleLeads = useMemo(() => leads.filter((l) => leadHasContactInfo(l)), [leads]);
   const hiddenCount = leads.length - visibleLeads.length;
@@ -127,12 +121,20 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
           l.ownerName.toLowerCase().includes(q)
       );
     }
+    // Apply custom sort order when no search/filter active
+    if (filter === 'all' && !query) {
+      const orderMap = new Map(customOrder.map((id, i) => [id, i]));
+      out = [...out].sort((a, b) => {
+        const ai = orderMap.has(a.id) ? orderMap.get(a.id)! : 9999;
+        const bi = orderMap.has(b.id) ? orderMap.get(b.id)! : 9999;
+        return ai - bi;
+      });
+    }
     return out;
-  }, [visibleLeads, filter, query]);
+  }, [visibleLeads, filter, query, customOrder]);
 
   const [detailOpen, setDetailOpen] = useState(false);
   const [detailLeadId, setDetailLeadId] = useState<string | null>(null);
-  const [addOpen, setAddOpen] = useState(false);
   const detailLead = leads.find((l) => l.id === detailLeadId) || null;
   function openDetail(id: string) {
     setDetailLeadId(id);
@@ -144,21 +146,6 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
 
   function update(id: string, patch: Partial<Lead>) {
     setLeads((prev) => prev.map((l) => (l.id === id ? { ...l, ...patch } : l)));
-  }
-
-  function addLead(newLead: Lead) {
-    setLeads((prev) => [newLead, ...prev]);
-    setSelectedId(newLead.id);
-  }
-
-  function removeLead(id: string) {
-    setLeads((prev) => {
-      const next = prev.filter((l) => l.id !== id);
-      // Pick a fallback selection
-      if (selectedId === id) setSelectedId(next[0]?.id || '');
-      return next;
-    });
-    setDetailOpen(false);
   }
 
   return (
@@ -181,7 +168,6 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
         {/* Left: CRM */}
         <div className="border-r border-stone-200 bg-white">
           <Toolbar
-            onAddClick={() => setAddOpen(true)}
             filter={filter}
             setFilter={setFilter}
             query={query}
@@ -195,6 +181,7 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
             onOpen={openDetail}
             onUpdate={update}
             autoEnriching={autoEnriching}
+            onReorder={(newOrder) => setCustomOrder(newOrder)}
           />
         </div>
 
@@ -213,18 +200,11 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
         </aside>
       </div>
 
-      <AddLeadModal
-        open={addOpen}
-        onClose={() => setAddOpen(false)}
-        onAdd={addLead}
-        existingIds={new Set(leads.map((l) => l.id))}
-      />
       <LeadDetailModal
         lead={detailLead}
         open={detailOpen}
         onClose={() => setDetailOpen(false)}
         onUpdate={update}
-        onDelete={removeLead}
       />
     </div>
   );
@@ -233,8 +213,6 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
 function Header({ leads }: { leads: Lead[] }) {
   const total = leads.length;
   const sent = leads.filter((l) => l.outreachSent).length;
-  const liInvited = leads.filter((l) => l.linkedinInviteSent).length;
-  const liAccepted = leads.filter((l) => l.linkedinAccepted).length;
   const replied = leads.filter((l) => l.responded).length;
   const won = leads.filter((l) => l.status === 'won').length;
   return (
@@ -248,8 +226,6 @@ function Header({ leads }: { leads: Lead[] }) {
       <div className="text-sm flex items-center gap-5">
         <Stat label="leads" value={total} />
         <Stat label="contacted" value={sent} />
-        <Stat label="LI requested" value={liInvited} />
-        <Stat label="LI accepted" value={liAccepted} />
         <Stat label="replied" value={replied} />
         <Stat label="won" value={won} accent />
         <a href="/" className="text-xs text-muted hover:underline ml-2">view site →</a>
@@ -274,7 +250,6 @@ function Toolbar({
   setQuery,
   counts,
   hiddenCount,
-  onAddClick,
 }: {
   filter: 'all' | LeadStatus;
   setFilter: (f: 'all' | LeadStatus) => void;
@@ -282,7 +257,6 @@ function Toolbar({
   setQuery: (q: string) => void;
   counts: Record<string, number>;
   hiddenCount?: number;
-  onAddClick?: () => void;
 }) {
   const tabs: Array<'all' | LeadStatus> = ['all', ...STATUSES];
   return (
@@ -311,14 +285,6 @@ function Toolbar({
           {hiddenCount} hidden · no contact info
         </div>
       ) : null}
-      {onAddClick && (
-        <button
-          onClick={onAddClick}
-          className={`${hiddenCount && hiddenCount > 0 ? '' : 'ml-auto'} text-xs px-4 py-1.5 rounded-full bg-ink text-white hover:bg-stone-800 font-medium`}
-        >
-          + Add lead
-        </button>
-      )}
     </div>
   );
 }
@@ -329,25 +295,56 @@ function LeadsTable({
   onOpen,
   onUpdate,
   autoEnriching,
+  onReorder,
 }: {
   leads: Lead[];
   selectedId: string;
   onOpen: (id: string) => void;
   onUpdate: (id: string, patch: Partial<Lead>) => void;
   autoEnriching?: boolean;
+  onReorder?: (newOrder: string[]) => void;
 }) {
+  const dragId = useRef<string | null>(null);
+  const [dragOverId, setDragOverId] = useState<string | null>(null);
+
+  function handleDragStart(id: string) {
+    dragId.current = id;
+  }
+
+  function handleDragOver(e: React.DragEvent, id: string) {
+    e.preventDefault();
+    setDragOverId(id);
+  }
+
+  function handleDrop(targetId: string) {
+    if (!dragId.current || dragId.current === targetId || !onReorder) return;
+    const ids = leads.map((l) => l.id);
+    const fromIdx = ids.indexOf(dragId.current);
+    const toIdx = ids.indexOf(targetId);
+    const reordered = [...ids];
+    reordered.splice(fromIdx, 1);
+    reordered.splice(toIdx, 0, dragId.current);
+    onReorder(reordered);
+    dragId.current = null;
+    setDragOverId(null);
+  }
+
+  function handleDragEnd() {
+    dragId.current = null;
+    setDragOverId(null);
+  }
+
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-sm">
         <thead className="bg-stone-50 text-xs uppercase tracking-wider text-muted">
           <tr>
+            <th className="px-2 py-3 w-6" />
             <th className="text-left px-4 py-3 font-medium">Business</th>
             <th className="text-left px-4 py-3 font-medium">Type</th>
             <th className="text-left px-4 py-3 font-medium">Location</th>
             <th className="text-left px-4 py-3 font-medium">Contact</th>
             <th className="text-center px-3 py-3 font-medium">Sent</th>
-            <th className="text-center px-3 py-3 font-medium">LinkedIn Request</th>
-            <th className="text-center px-3 py-3 font-medium">LinkedIn Accepted</th>
             <th className="text-center px-3 py-3 font-medium">Replied</th>
             <th className="text-left px-4 py-3 font-medium">Status</th>
           </tr>
@@ -356,11 +353,19 @@ function LeadsTable({
           {leads.map((l) => (
             <tr
               key={l.id}
+              draggable
+              onDragStart={() => handleDragStart(l.id)}
+              onDragOver={(e) => handleDragOver(e, l.id)}
+              onDrop={() => handleDrop(l.id)}
+              onDragEnd={handleDragEnd}
               onClick={() => onOpen(l.id)}
               className={`border-t border-stone-100 cursor-pointer hover:bg-stone-50 ${
                 selectedId === l.id ? 'bg-amber-50/50' : ''
-              }`}
+              } ${dragOverId === l.id ? 'border-t-2 border-t-pink-400' : ''}`}
             >
+              <td className="px-2 py-3 text-stone-300 hover:text-stone-500 cursor-grab active:cursor-grabbing select-none text-center" onClick={(e) => e.stopPropagation()}>
+                ⠿
+              </td>
               <td className="px-4 py-3">
                 <div className="font-medium">{l.name}</div>
                 <a
@@ -424,30 +429,6 @@ function LeadsTable({
               </td>
               <td className="px-3 py-3 text-center">
                 <Checkbox
-                  checked={!!l.linkedinInviteSent}
-                  onChange={(v) =>
-                    onUpdate(l.id, {
-                      linkedinInviteSent: v,
-                      linkedinInviteSentAt: v ? Date.now() : undefined,
-                      lastTouch: v ? new Date().toISOString() : l.lastTouch,
-                    })
-                  }
-                />
-              </td>
-              <td className="px-3 py-3 text-center">
-                <Checkbox
-                  checked={!!l.linkedinAccepted}
-                  onChange={(v) =>
-                    onUpdate(l.id, {
-                      linkedinAccepted: v,
-                      linkedinAcceptedAt: v ? Date.now() : undefined,
-                      lastTouch: v ? new Date().toISOString() : l.lastTouch,
-                    })
-                  }
-                />
-              </td>
-              <td className="px-3 py-3 text-center">
-                <Checkbox
                   checked={l.responded}
                   onChange={(v) =>
                     onUpdate(l.id, {
@@ -472,7 +453,7 @@ function LeadsTable({
             </tr>
           ))}
           {leads.length === 0 && (
-            <tr><td colSpan={9} className="text-center py-12 text-muted">No leads match.</td></tr>
+            <tr><td colSpan={7} className="text-center py-12 text-muted">No leads match.</td></tr>
           )}
         </tbody>
       </table>
