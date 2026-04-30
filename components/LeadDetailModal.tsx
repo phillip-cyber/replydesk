@@ -11,11 +11,13 @@ export default function LeadDetailModal({
   open,
   onClose,
   onUpdate,
+  onDelete,
 }: {
   lead: Lead | null;
   open: boolean;
   onClose: () => void;
   onUpdate: (id: string, patch: Partial<Lead>) => void;
+  onDelete?: (id: string) => void;
 }) {
   const [generatingEmail, setGeneratingEmail] = useState(false);
   const [generateErr, setGenerateErr] = useState<string | null>(null);
@@ -406,6 +408,25 @@ export default function LeadDetailModal({
               className="w-full p-3 rounded-lg border border-stone-200 bg-white text-sm leading-relaxed min-h-[100px] outline-none focus:border-stone-400"
             />
           </Section>
+
+          {onDelete && (
+            <div className="pt-6 mt-4 border-t border-stone-200">
+              <div className="text-[10px] uppercase tracking-widest text-rose-600 mb-2 font-medium">Danger zone</div>
+              <button
+                onClick={() => {
+                  if (window.confirm(`Remove "${lead.name}" from the CRM? This cannot be undone (until next reload).`)) {
+                    onDelete(lead.id);
+                  }
+                }}
+                className="text-xs px-3 py-1.5 rounded-full bg-white border border-rose-300 text-rose-700 hover:bg-rose-50"
+              >
+                Remove this lead
+              </button>
+              <p className="text-[11px] text-muted mt-2">
+                Removes from your local view. Reloading rebuilds from the seed JSON unless the seed is also updated.
+              </p>
+            </div>
+          )}
         </div>
       </aside>
     </div>

@@ -6,7 +6,8 @@ export type LeadStatus =
   | 'replied'
   | 'meeting'
   | 'won'
-  | 'lost';
+  | 'lost'
+  | 'blocked';
 
 export const STATUS_COLORS: Record<LeadStatus, string> = {
   new: 'bg-gray-100 text-gray-700 border-gray-200',
@@ -16,6 +17,7 @@ export const STATUS_COLORS: Record<LeadStatus, string> = {
   meeting: 'bg-violet-50 text-violet-700 border-violet-200',
   won: 'bg-green-100 text-green-800 border-green-300',
   lost: 'bg-rose-50 text-rose-700 border-rose-200',
+  blocked: 'bg-stone-800 text-white border-stone-900',
 };
 
 export type Lead = {

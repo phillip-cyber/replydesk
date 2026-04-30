@@ -7,7 +7,7 @@ import LeadDetailModal from './LeadDetailModal';
 import AddLeadModal from './AddLeadModal';
 
 const STORAGE_KEY = 'ms-leads-v2';
-const STATUSES: LeadStatus[] = ['new', 'queued', 'sent', 'replied', 'meeting', 'won', 'lost'];
+const STATUSES: LeadStatus[] = ['new', 'queued', 'sent', 'replied', 'meeting', 'won', 'lost', 'blocked'];
 
 export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
   const [leads, setLeads] = useState<Lead[]>(initialLeads);
@@ -146,6 +146,16 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
     setSelectedId(newLead.id);
   }
 
+  function removeLead(id: string) {
+    setLeads((prev) => {
+      const next = prev.filter((l) => l.id !== id);
+      // Pick a fallback selection
+      if (selectedId === id) setSelectedId(next[0]?.id || '');
+      return next;
+    });
+    setDetailOpen(false);
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header leads={leads} />
@@ -209,6 +219,7 @@ export default function AdminApp({ initialLeads }: { initialLeads: Lead[] }) {
         open={detailOpen}
         onClose={() => setDetailOpen(false)}
         onUpdate={update}
+        onDelete={removeLead}
       />
     </div>
   );
