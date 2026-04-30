@@ -297,10 +297,15 @@ function LeadsTable({ leads, selectedId, onOpen, onUpdate, autoEnriching, onReor
               <td className="px-3 py-3 text-center"><Checkbox checked={!!l.linkedinInviteSent} onChange={(v) => onUpdate(l.id, { linkedinInviteSent: v, linkedinInviteSentAt: v ? Date.now() : undefined, lastTouch: v ? new Date().toISOString() : l.lastTouch })} /></td>
               <td className="px-3 py-3 text-center"><Checkbox checked={!!l.linkedinAccepted} onChange={(v) => onUpdate(l.id, { linkedinAccepted: v, linkedinAcceptedAt: v ? Date.now() : undefined, lastTouch: v ? new Date().toISOString() : l.lastTouch })} /></td>
               <td className="px-3 py-3 text-center"><Checkbox checked={l.responded} onChange={(v) => onUpdate(l.id, { responded: v, status: v && (l.status === 'sent' || l.status === 'queued') ? 'replied' : l.status })} /></td>
-              <td className="px-4 py-3">
-                <select value={l.status} onClick={(e) => e.stopPropagation()} onChange={(e) => onUpdate(l.id, { status: e.target.value as LeadStatus })} className={`text-xs px-2 py-1 rounded-full border ${STATUS_COLORS[l.status]} cursor-pointer`}>
-                  {STATUSES.map((s) => (<option key={s} value={s}>{s}</option>))}
-                </select>
+              <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
+                <textarea
+                  value={l.status || ''}
+                  onClick={(e) => e.stopPropagation()}
+                  onChange={(e) => onUpdate(l.id, { status: e.target.value as LeadStatus })}
+                  placeholder="status / notes…"
+                  rows={2}
+                  className="w-full text-xs px-2 py-1 rounded border border-stone-200 bg-white resize-none outline-none focus:border-stone-400 leading-snug"
+                />
               </td>
             </tr>
           ))}
