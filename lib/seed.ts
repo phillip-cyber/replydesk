@@ -7,7 +7,7 @@ function slugId(s: SeedLead, i: number): string {
 }
 
 export function getSeedLeads(): Lead[] {
-  return (seedRaw as SeedLead[]).map((s, i) => ({
+  return (seedRaw as unknown as SeedLead[]).map((s, i) => ({
     ...s,
     id: slugId(s, i),
     // Respect seed JSON values when present so Apr 29 sent-state survives
